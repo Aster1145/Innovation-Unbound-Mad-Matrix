@@ -1,23 +1,27 @@
 import Link from "next/link";
 import {
-  TrendingUp,
+  User,
   Wallet,
+  CreditCard,
+  Smartphone,
+  ArrowLeftRight,
+  DollarSign,
+  Plus,
+  Minus,
+  Receipt,
+  ShoppingBag,
+  TrendingUp,
   PiggyBank,
-  Sparkles,
-  Link2,
-  Banknote,
   AlertTriangle,
   CheckCircle2,
   Info,
   ArrowRight,
-  BadgeCheck,
-  PlusCircle,
-  MinusCircle,
-  ArrowLeftRight,
-  QrCode,
-  Bell,
+  ShieldCheck,
+  Building2,
   Calendar,
-  Receipt,
+  Lock,
+  ArrowUpRight,
+  ArrowDownLeft,
 } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { buildWorkerAnalytics } from "@/lib/data";
@@ -53,26 +57,6 @@ export default async function WorkerDashboard() {
           actionHref="/connect"
           actionLabel="Connect a demo account"
         />
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Link href="/cash-income" className="card flex items-center gap-3 p-4 transition hover:border-indigo-300">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-              <Banknote className="size-5" />
-            </span>
-            <span>
-              <span className="block text-sm font-semibold text-slate-900">Record cash income</span>
-              <span className="block text-xs text-slate-500">Log a daily wage in seconds</span>
-            </span>
-          </Link>
-          <Link href="/settings" className="card flex items-center gap-3 p-4 transition hover:border-indigo-300">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-              <BadgeCheck className="size-5" />
-            </span>
-            <span>
-              <span className="block text-sm font-semibold text-slate-900">Complete your profile</span>
-              <span className="block text-xs text-slate-500">Work type, city, history</span>
-            </span>
-          </Link>
-        </div>
       </div>
     );
   }
@@ -91,108 +75,313 @@ export default async function WorkerDashboard() {
 
   const unverified = a.income.filter((i) => i.status === "unverified");
   const recentTxs = a.txs.slice(0, 5);
-  const lastMonth = a.monthly.at(-1);
+  const netBalance = a.totalIncome - a.totalExpense;
 
   return (
     <div className="space-y-7">
-      {/* Top Mobile/App Bar Header Card */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-7 sm:p-9 text-white shadow-xl shadow-indigo-950/20">
-        <div className="absolute top-0 right-0 size-80 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
-        <div className="relative z-10">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5">
-              <div className="flex size-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-display font-bold text-base shadow-sm">
-                {user.name.split(" ").map(n => n[0]).join("")}
-              </div>
-              <div>
-                <p className="text-xs font-bold text-indigo-200">Namaste, {user.name.split(" ")[0]}</p>
-                <p className="text-[12px] font-medium text-slate-400">{WORKER_TYPES[a.profile?.workerType ?? "gig"]}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white backdrop-blur-md border border-white/15 shadow-sm">
-                <Calendar className="size-3.5" /> August ▾
+      {/* ------------------------------------------------------------------ */}
+      {/* 1. TOP APP BAR & HEADER BALANCE (Matching Reference Mockup Top Header) */}
+      {/* ------------------------------------------------------------------ */}
+      <div className="flex items-center justify-between px-1">
+        <div className="flex items-center gap-3">
+          <span className="flex size-10.5 items-center justify-center rounded-full bg-sky-500 text-white shadow-md shadow-sky-500/20 font-bold">
+            <User className="size-5" />
+          </span>
+          <div>
+            <p className="font-mono text-xs font-semibold text-slate-400">Total Net Balance</p>
+            <p className="font-display text-xl font-black text-slate-900">
+              {formatINR(netBalance)}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/connect"
+            className="flex size-10 items-center justify-center rounded-2xl bg-white text-slate-600 shadow-sm border border-slate-200/80 hover:bg-slate-50 transition"
+          >
+            <Wallet className="size-4.5" />
+          </Link>
+        </div>
+      </div>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 2. 4 VIBRANT CIRCLE QUICK-ACTION BUTTONS (Matching Reference Mockup) */}
+      {/* ------------------------------------------------------------------ */}
+      <div className="grid grid-cols-4 gap-3 text-center sm:gap-6">
+        <Link href="/cash-income" className="group flex flex-col items-center gap-2">
+          <span className="flex size-14 items-center justify-center rounded-full bg-[#10b981] text-white shadow-lg shadow-emerald-500/25 transition-transform group-hover:scale-105">
+            <ArrowDownLeft className="size-6" />
+          </span>
+          <span className="text-[11.5px] font-semibold text-slate-700 leading-tight">
+            Top-Up Payment
+          </span>
+        </Link>
+        <Link href="/transactions" className="group flex flex-col items-center gap-2">
+          <span className="flex size-14 items-center justify-center rounded-full bg-[#ff6b6b] text-white shadow-lg shadow-rose-500/25 transition-transform group-hover:scale-105">
+            <Smartphone className="size-6" />
+          </span>
+          <span className="text-[11.5px] font-semibold text-slate-700 leading-tight">
+            Mobile Payment
+          </span>
+        </Link>
+        <Link href="/savings" className="group flex flex-col items-center gap-2">
+          <span className="flex size-14 items-center justify-center rounded-full bg-[#3b82f6] text-white shadow-lg shadow-blue-500/25 transition-transform group-hover:scale-105">
+            <ArrowLeftRight className="size-6" />
+          </span>
+          <span className="text-[11.5px] font-semibold text-slate-700 leading-tight">
+            Money Transfer
+          </span>
+        </Link>
+        <Link href="/connect" className="group flex flex-col items-center gap-2">
+          <span className="flex size-14 items-center justify-center rounded-full bg-[#eab308] text-white shadow-lg shadow-yellow-500/25 transition-transform group-hover:scale-105">
+            <DollarSign className="size-6" />
+          </span>
+          <span className="text-[11.5px] font-semibold text-slate-700 leading-tight">
+            Make a Payment
+          </span>
+        </Link>
+      </div>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 3. VIRTUAL CARDS PREVIEW SECTION (Matching "Cards" in Mockup) */}
+      {/* ------------------------------------------------------------------ */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between px-1">
+          <h3 className="font-display text-base font-bold text-slate-900">Cards</h3>
+        </div>
+        <div className="grid gap-3.5 sm:grid-cols-2">
+          {/* Card 1: Primary Gig Earnings Wallet Card */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 p-5 text-white shadow-lg shadow-indigo-500/20">
+            <div className="flex items-center justify-between">
+              <span className="font-display text-xs font-black tracking-widest text-violet-200">
+                VISA
               </span>
-              <button className="flex size-9.5 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white hover:bg-white/20 transition">
-                <Bell className="size-4.5" />
-              </button>
+              <span className="font-mono text-xs font-medium text-violet-200">
+                •••• •••• •••• 7895
+              </span>
             </div>
-          </div>
-
-          <div className="mt-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-indigo-300">Total Balance</p>
-            <h2 className="mt-1 font-display text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
-              {formatINR(a.totalIncome - a.totalExpense)}
-            </h2>
-          </div>
-
-          <div className="mt-7 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-            <div className="rounded-2xl bg-white/10 p-4.5 backdrop-blur-md border border-white/15">
-              <p className="text-xs font-bold text-indigo-200">Income</p>
-              <p className="mt-1 font-display text-xl font-bold text-emerald-400">
-                +{formatINR(lastMonth?.income ?? a.avgIncome)}
+            <div className="mt-4">
+              <p className="font-display text-xl font-extrabold tracking-tight">
+                {formatINR(a.totalIncome)}
               </p>
-            </div>
-            <div className="rounded-2xl bg-white/10 p-4.5 backdrop-blur-md border border-white/15">
-              <p className="text-xs font-bold text-indigo-200">Expenses</p>
-              <p className="mt-1 font-display text-xl font-bold text-rose-400">
-                -{formatINR(lastMonth?.expense ?? a.avgExpense)}
+              <p className="text-[10.5px] font-medium text-violet-200 uppercase tracking-wider">
+                Gig Earnings Account · Verified
               </p>
             </div>
           </div>
 
-          {/* Quick Action Pill Buttons */}
-          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4 text-center">
-            <Link href="/cash-income" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
-              <PlusCircle className="size-5 text-white" />
-              <span className="mt-1.5 text-xs font-bold text-white">Add Income</span>
-            </Link>
-            <Link href="/transactions" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
-              <MinusCircle className="size-5 text-white" />
-              <span className="mt-1.5 text-xs font-bold text-white">Add Expense</span>
-            </Link>
-            <Link href="/savings" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
-              <ArrowLeftRight className="size-5 text-white" />
-              <span className="mt-1.5 text-xs font-bold text-white">Transfer</span>
-            </Link>
-            <Link href="/connect" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
-              <QrCode className="size-5 text-white" />
-              <span className="mt-1.5 text-xs font-bold text-white">Scan Receipt</span>
-            </Link>
+          {/* Card 2: Emergency & Savings Virtual Card */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 p-5 text-white shadow-lg shadow-rose-500/20">
+            <div className="flex items-center justify-between">
+              <span className="font-display text-xs font-black tracking-widest text-rose-100">
+                Mastercard
+              </span>
+              <span className="font-mono text-xs font-medium text-rose-100">
+                •••• •••• •••• 8456
+              </span>
+            </div>
+            <div className="mt-4">
+              <p className="font-display text-xl font-extrabold tracking-tight">
+                {formatINR(a.currentSavings)}
+              </p>
+              <p className="text-[10.5px] font-medium text-rose-100 uppercase tracking-wider">
+                Emergency Savings Fund
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Unverified nudge */}
-      {unverified.length > 0 && (
-        <div className="flex items-start gap-4 rounded-3xl border border-amber-200/90 bg-amber-50/80 p-5 shadow-sm">
-          <AlertTriangle className="mt-0.5 size-5 shrink-0 text-amber-600" />
-          <div className="flex-1">
-            <p className="text-sm font-bold text-slate-900">
-              {unverified.length} income record{unverified.length > 1 ? "s" : ""} awaiting verification
-            </p>
-            <p className="mt-0.5 text-xs leading-relaxed text-slate-600 font-medium">
-              Self-reported income has low confidence. Ask your employer to confirm it on
-              FinancialBridge to raise your Income Confidence Score.
-            </p>
-          </div>
-          <Link href="/income" className="shrink-0 rounded-2xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-indigo-700">
-            Review
+      {/* ------------------------------------------------------------------ */}
+      {/* 4. LATEST TRANSACTIONS (Matching "Latest transactions" in Mockup) */}
+      {/* ------------------------------------------------------------------ */}
+      <Card>
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="font-display text-base font-bold text-slate-900">
+            Latest transactions
+          </h3>
+          <Link
+            href="/transactions"
+            className="text-xs font-bold text-rose-500 hover:text-rose-600 transition"
+          >
+            View all
           </Link>
         </div>
-      )}
 
-      {/* Cohesive Score Hero */}
+        <div className="space-y-2.5">
+          {recentTxs.map((tx) => (
+            <div
+              key={tx.id}
+              className="flex items-center justify-between rounded-2xl border border-slate-100 bg-slate-50/50 p-3.5 transition hover:bg-slate-50"
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  className={`flex size-10 items-center justify-center rounded-2xl ${
+                    tx.type === "credit"
+                      ? "bg-emerald-100 text-emerald-600"
+                      : "bg-sky-100 text-sky-600"
+                  }`}
+                >
+                  {tx.type === "credit" ? (
+                    <ArrowDownLeft className="size-5" />
+                  ) : (
+                    <ArrowLeftRight className="size-5" />
+                  )}
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-slate-900">{tx.description}</p>
+                  <p className="text-[11px] font-medium text-slate-400">
+                    {formatDate(tx.date)} · {tx.category}
+                  </p>
+                </div>
+              </div>
+              <span
+                className={`font-display text-sm font-bold ${
+                  tx.type === "credit" ? "text-[#10b981]" : "text-slate-900"
+                }`}
+              >
+                {tx.type === "credit" ? "+ " : "- "}
+                {formatINR(tx.amount)}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 5. DEPOSITS SECTION (Matching "Deposits" & "Current deposits" in Mockup) */}
+      {/* ------------------------------------------------------------------ */}
+      <div className="space-y-3">
+        <h3 className="font-display text-xl font-bold text-slate-900 px-1">Deposits</h3>
+        <p className="text-xs text-slate-500 font-medium px-1 -mt-2">Current deposits</p>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {/* Deposit 1 */}
+          <Card className="space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="font-display text-2xl font-black text-slate-900">
+                  {formatINR(300000)}
+                </p>
+                <p className="text-[11px] font-medium text-slate-400">
+                  Sep 1 - Mar 1, 2026
+                </p>
+              </div>
+              <div className="text-right">
+                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700">
+                  8%
+                </span>
+                <p className="mt-1 text-xs font-bold text-[#10b981]">+ {formatINR(6057)}</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 pt-1">
+              <Link
+                href="/savings"
+                className="flex items-center justify-center rounded-2xl bg-[#38bdf8] py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+              >
+                Top-Up
+              </Link>
+              <Link
+                href="/savings"
+                className="flex items-center justify-center rounded-2xl bg-[#10b981] py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+              >
+                Withdrawal
+              </Link>
+            </div>
+          </Card>
+
+          {/* Deposit 2 */}
+          <Card className="space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="font-display text-2xl font-black text-slate-900">
+                  {formatINR(150000)}
+                </p>
+                <p className="text-[11px] font-medium text-slate-400">
+                  Sep 1, 2025 - Sep 1, 2026
+                </p>
+              </div>
+              <div className="text-right">
+                <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700">
+                  10%
+                </span>
+                <p className="mt-1 text-xs font-bold text-[#10b981]">+ {formatINR(15000)}</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 pt-1">
+              <Link
+                href="/savings"
+                className="flex items-center justify-center rounded-2xl bg-[#ff6b6b] py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+              >
+                Extend
+              </Link>
+              <Link
+                href="/savings"
+                className="flex items-center justify-center rounded-2xl bg-[#10b981] py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+              >
+                Withdrawal
+              </Link>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 6. CURRENT MONEYBOXES (Matching "Current moneyboxes" in Mockup) */}
+      {/* ------------------------------------------------------------------ */}
+      <div className="space-y-3">
+        <p className="text-xs text-slate-500 font-medium px-1">Current moneyboxes</p>
+        <Card className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="flex size-9 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
+                <PiggyBank className="size-5" />
+              </span>
+              <p className="text-sm font-bold text-slate-900">Emergency & Equipment Vault</p>
+            </div>
+            <p className="font-display text-lg font-black text-slate-900">
+              {formatINR(120000)}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-1.5 flex items-center justify-between text-xs font-bold text-slate-500">
+              <span>Saved so far</span>
+              <span>{formatINR(65027)}</span>
+            </div>
+            <Progress value={54} tone="indigo" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5 pt-1">
+            <Link
+              href="/savings"
+              className="flex items-center justify-center rounded-2xl bg-[#38bdf8] py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+            >
+              Top-Up
+            </Link>
+            <Link
+              href="/savings"
+              className="flex items-center justify-center rounded-2xl bg-[#10b981] py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+            >
+              Withdrawal
+            </Link>
+          </div>
+        </Card>
+      </div>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 7. FINANCIAL RESILIENCE SCORE METER */}
+      {/* ------------------------------------------------------------------ */}
       <Card className="overflow-hidden !p-0">
         <div className="grid md:grid-cols-[280px_1fr]">
-          <div className="flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 via-indigo-50/40 to-slate-50 border-b md:border-b-0 md:border-r border-slate-200/80 px-8 py-8 text-center">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-indigo-600 uppercase">
+          <div className="flex flex-col items-center justify-center bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200/80 px-8 py-8 text-center">
+            <p className="text-[11px] font-bold tracking-[0.16em] text-sky-600 uppercase">
               Financial Resilience Score
             </p>
             <div className="mt-4">
               <ScoreRing score={a.resilience.score} max={900} size={180} />
             </div>
-            <p className="mt-3.5 text-sm font-bold text-indigo-700">{a.resilience.band}</p>
+            <p className="mt-3.5 text-sm font-bold text-sky-700">{a.resilience.band}</p>
             <p className="mt-1 max-w-48 text-[11px] leading-relaxed text-slate-500 font-medium">
               Prototype indicator based on your available data
             </p>
@@ -202,7 +391,7 @@ export default async function WorkerDashboard() {
               <h3 className="font-display text-[16px] font-bold text-slate-900">
                 Why this score
               </h3>
-              <span className="rounded-full bg-indigo-50 border border-indigo-100 px-3 py-1 text-[10.5px] font-bold tracking-wide text-indigo-700 uppercase">
+              <span className="rounded-full bg-sky-50 border border-sky-100 px-3 py-1 text-[10.5px] font-bold tracking-wide text-sky-700 uppercase">
                 Transparent model
               </span>
             </div>
@@ -216,7 +405,7 @@ export default async function WorkerDashboard() {
                         {Math.round(f.weight * 100)}%
                       </span>
                     </span>
-                    <span className="font-extrabold text-indigo-600">{f.value}/100</span>
+                    <span className="font-extrabold text-sky-600">{f.value}/100</span>
                   </div>
                   <Progress
                     value={f.value}
@@ -229,161 +418,41 @@ export default async function WorkerDashboard() {
         </div>
       </Card>
 
-      {/* Category breakdown + Income Confidence */}
+      {/* ------------------------------------------------------------------ */}
+      {/* 8. INCOME VS EXPENSES & CATEGORY BREAKDOWN */}
+      {/* ------------------------------------------------------------------ */}
       <div className="grid gap-5 md:grid-cols-2">
         <Card>
           <CardHeader
             title="Expenses by Category"
-            subtitle="Monthly breakdown of essential vs non-essential spend"
+            subtitle="Monthly breakdown of spend categories"
           />
           <div className="mt-2">
-            <ExpenseDonut data={a.categoryBreakdown.length > 0 ? a.categoryBreakdown : [
-              { name: "Salary", value: 12214 },
-              { name: "Freelancing", value: 300 },
-              { name: "Investment", value: 1500 },
-              { name: "Farming", value: 800 },
-              { name: "Rental", value: 2000 },
-            ]} />
-          </div>
-          <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-            {a.categoryBreakdown.map((cat) => (
-              <span key={cat.name} className="rounded-full bg-indigo-50 border border-indigo-100 px-3 py-1 text-[11px] font-bold text-indigo-700">
-                {cat.name}: {formatINR(cat.value)}
-              </span>
-            ))}
+            <ExpenseDonut
+              data={
+                a.categoryBreakdown.length > 0
+                  ? a.categoryBreakdown
+                  : [
+                      { name: "Groceries", value: 12214 },
+                      { name: "Fuel & Transport", value: 3000 },
+                      { name: "EMI Repayment", value: 1850 },
+                      { name: "Savings", value: 2500 },
+                    ]
+              }
+            />
           </div>
         </Card>
 
-        {/* Confidence & Adaptive Savings Tips */}
-        <div className="space-y-4">
-          <Card className="flex items-center gap-5">
-            <div className="relative flex size-20 shrink-0 items-center justify-center">
-              <svg viewBox="0 0 80 80" className="size-20 -rotate-90">
-                <circle cx="40" cy="40" r="34" fill="none" stroke="#e2e8f0" strokeWidth="8" />
-                <circle
-                  cx="40" cy="40" r="34" fill="none"
-                  stroke={a.confidence.score >= 85 ? "#6366f1" : a.confidence.score >= 60 ? "#f59e0b" : "#f43f5e"}
-                  strokeWidth="8" strokeLinecap="round"
-                  strokeDasharray={2 * Math.PI * 34}
-                  strokeDashoffset={2 * Math.PI * 34 * (1 - a.confidence.score / 100)}
-                />
-              </svg>
-              <span className="absolute font-display text-lg font-bold text-slate-900">
-                {a.confidence.score}%
-              </span>
-            </div>
-            <div>
-              <p className="text-[11px] font-bold tracking-[0.06em] text-slate-400 uppercase">
-                Income Confidence
-              </p>
-              <div className="mt-1"><ConfidenceBadge band={a.confidence.band} /></div>
-              <Link href="/income" className="mt-2 inline-flex items-center gap-1 text-[11.5px] font-bold text-indigo-600 hover:text-indigo-700">
-                Why confidence score matters <ArrowRight className="size-3.5" />
-              </Link>
-            </div>
-          </Card>
-
-          <Stat
-            label="Avg. monthly income"
-            value={formatINR(a.avgIncome)}
-            sub={`Range ${formatINR(a.minIncome)} – ${formatINR(a.maxIncome)}`}
-            icon={<TrendingUp className="size-5" />}
+        <Card>
+          <CardHeader
+            title="Income vs Expenses (6 Months)"
+            subtitle={`Income variability (CV): ${(a.cv * 100).toFixed(0)}%`}
           />
-          <Stat
-            label="Current savings"
-            value={formatINR(a.currentSavings)}
-            sub={`Savings rate ${(a.savingsRate * 100).toFixed(1)}% of income`}
-            icon={<PiggyBank className="size-5" />}
-          />
-        </div>
+          <IncomeExpenseArea data={a.monthly} />
+        </Card>
       </div>
-
-      {/* Recent Transactions List */}
-      <Card>
-        <CardHeader
-          title="Recent Transactions"
-          subtitle="Consented imports & verified income entries"
-          action={
-            <Link href="/transactions" className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700">
-              View all <ArrowRight className="size-3.5" />
-            </Link>
-          }
-        />
-        <div className="divide-y divide-slate-100">
-          {recentTxs.map((tx) => (
-            <div key={tx.id} className="flex items-center justify-between py-3.5">
-              <div className="flex items-center gap-3.5">
-                <span className={`flex size-10.5 items-center justify-center rounded-2xl ${
-                  tx.type === "credit" ? "bg-emerald-50 text-emerald-600" : "bg-slate-100 text-slate-600"
-                }`}>
-                  {tx.type === "credit" ? <PlusCircle className="size-5" /> : <Receipt className="size-5" />}
-                </span>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">{tx.description}</p>
-                  <p className="text-xs font-medium text-slate-400">{formatDate(tx.date)} · {tx.category}</p>
-                </div>
-              </div>
-              <span className={`font-display text-sm font-bold ${
-                tx.type === "credit" ? "text-emerald-600" : "text-slate-900"
-              }`}>
-                {tx.type === "credit" ? "+" : "-"}{formatINR(tx.amount)}
-              </span>
-            </div>
-          ))}
-        </div>
-      </Card>
-
-      {/* Income vs Expenses Chart */}
-      <Card>
-        <CardHeader
-          title="Income vs Expenses — Last 6 Months"
-          subtitle={`Income variability (CV): ${(a.cv * 100).toFixed(0)}% · Volatile but real earnings`}
-        />
-        <IncomeExpenseArea data={a.monthly} />
-      </Card>
-
-      {/* Insights preview */}
-      <Card>
-        <CardHeader
-          title="AI Financial Insights"
-          subtitle="Responsible, data-based observations — not guaranteed advice"
-          action={
-            <Link href="/insights" className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700">
-              View all <ArrowRight className="size-3.5" />
-            </Link>
-          }
-        />
-        <div className="grid gap-3.5 md:grid-cols-3">
-          {insights.map((ins) => (
-            <div
-              key={ins.title}
-              className={`rounded-2xl border p-4.5 ${
-                ins.type === "warning"
-                  ? "border-amber-200 bg-amber-50/80"
-                  : ins.type === "positive"
-                    ? "border-indigo-200 bg-indigo-50/80"
-                    : "border-slate-200 bg-slate-50/80"
-              }`}
-            >
-              <p className="flex items-center gap-2 text-[13.5px] font-bold text-slate-900">
-                {ins.type === "warning" ? (
-                  <AlertTriangle className="size-4.5 text-amber-600" />
-                ) : ins.type === "positive" ? (
-                  <CheckCircle2 className="size-4.5 text-indigo-600" />
-                ) : (
-                  <Info className="size-4.5 text-slate-600" />
-                )}
-                {ins.title}
-              </p>
-              <p className="mt-2 line-clamp-4 text-xs leading-relaxed font-medium text-slate-600">{ins.body}</p>
-            </div>
-          ))}
-        </div>
-      </Card>
 
       <PrototypeNote />
     </div>
   );
 }
-
-

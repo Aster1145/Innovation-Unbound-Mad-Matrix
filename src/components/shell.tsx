@@ -195,23 +195,26 @@ export function AppShell({
         <div className="mx-auto max-w-6xl">{children}</div>
       </main>
 
-      {/* ------- Mobile bottom floating pill navigation bar ------- */}
+      {/* ------- Mobile bottom floating pill navigation bar matching reference screenshot ------- */}
       <div className="fixed inset-x-0 bottom-4 z-40 px-4 md:hidden">
-        <nav className="mx-auto flex max-w-md items-center justify-around rounded-full border border-slate-200/90 bg-white/95 px-3 py-2.5 shadow-xl shadow-slate-900/10 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-md items-center justify-around rounded-3xl border border-slate-200/90 bg-white/95 px-2 py-2.5 shadow-xl shadow-slate-900/10 backdrop-blur-xl">
           {primary.map((item) => {
             const active = isActive(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 rounded-full px-3 py-1.5 transition-all ${
-                  active
-                    ? "bg-indigo-600 text-white shadow-sm"
-                    : "text-slate-500 hover:text-indigo-600"
+                className={`relative flex flex-col items-center gap-1 rounded-2xl px-2.5 py-1.5 transition-all ${
+                  active ? "text-rose-500 font-bold" : "text-slate-500 hover:text-slate-800 font-medium"
                 }`}
               >
-                <span className="[&>svg]:size-4.5">{item.icon}</span>
-                <span className="text-[10px] font-bold tracking-tight">
+                {active && (
+                  <span className="absolute -top-1.5 size-1.5 rounded-full bg-rose-500 shadow-sm" />
+                )}
+                <span className={`[&>svg]:size-5 ${active ? "text-rose-500" : "text-slate-400"}`}>
+                  {item.icon}
+                </span>
+                <span className="text-[10px] tracking-tight">
                   {item.label.split(" ")[0]}
                 </span>
               </Link>
@@ -219,16 +222,17 @@ export function AppShell({
           })}
           <button
             onClick={() => setMenuOpen(true)}
-            className={`flex flex-col items-center gap-0.5 rounded-full px-3 py-1.5 text-slate-500 transition-all hover:text-indigo-600 ${
-              menuOpen ? "bg-indigo-600 text-white" : ""
+            className={`relative flex flex-col items-center gap-1 rounded-2xl px-2.5 py-1.5 transition-all ${
+              menuOpen ? "text-rose-500 font-bold" : "text-slate-500 hover:text-slate-800 font-medium"
             }`}
           >
-            <Menu className="size-4.5" />
-            <span className="text-[10px] font-bold tracking-tight">More</span>
+            <Menu className={`size-5 ${menuOpen ? "text-rose-500" : "text-slate-400"}`} />
+            <span className="text-[10px] tracking-tight">More</span>
           </button>
         </nav>
       </div>
     </div>
   );
 }
+
 

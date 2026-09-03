@@ -9,20 +9,20 @@
   --color-ink-800: #334155;
   --color-ink-700: #475569;
 
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-300: #a5b4fc;
-  --color-brand-400: #818cf8;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
+  --color-brand-50: #f0f9ff;
+  --color-brand-100: #e0f2fe;
+  --color-brand-200: #bae6fd;
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0284c7;
+  --color-brand-600: #0369a1;
+  --color-brand-700: #075985;
+  --color-brand-800: #0c4a6e;
+  --color-brand-900: #0a3651;
 
-  --shadow-card: 0 2px 8px -2px rgb(15 23 42 / 0.06), 0 1px 3px -1px rgb(15 23 42 / 0.04);
-  --shadow-lift: 0 16px 36px -8px rgb(79 70 229 / 0.18);
-  --shadow-glow: 0 0 50px -10px rgb(99 102 241 / 0.35);
+  --shadow-card: 0 4px 25px -4px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  --shadow-lift: 0 16px 36px -8px rgba(2, 132, 199, 0.18);
+  --shadow-glow: 0 0 50px -10px rgba(56, 189, 248, 0.35);
 
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-fade-in: fade-in 1s ease both;
@@ -59,13 +59,15 @@ html {
 body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 45%, #eef2ff 100%);
+  background-attachment: fixed;
   color: #0f172a;
+  min-height: 100vh;
 }
 
 ::selection {
-  background: var(--color-brand-200);
-  color: var(--color-ink-950);
+  background: #bae6fd;
+  color: #0f172a;
 }
 
 ::-webkit-scrollbar {
@@ -76,7 +78,7 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #94a3b8;
   border-radius: 9999px;
 }
 .dark-scroll::-webkit-scrollbar-thumb {
@@ -86,19 +88,19 @@ body {
 
 .card {
   background: #ffffff;
-  border: 1px solid rgb(226 232 240 / 0.85);
-  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.5rem;
   box-shadow: var(--shadow-card);
 }
 
 .glass-dark {
-  background: rgb(255 255 255 / 0.05);
-  border: 1px solid rgb(255 255 255 / 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, #818cf8 0%, #a5b4fc 40%, #c084fc 90%);
+  background: linear-gradient(100deg, #0284c7 0%, #38bdf8 40%, #818cf8 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -106,18 +108,18 @@ body {
 
 .hero-mesh {
   background:
-    radial-gradient(60rem 34rem at 78% -10%, rgb(99 102 241 / 0.18), transparent 60%),
-    radial-gradient(44rem 30rem at -12% 30%, rgb(139 92 246 / 0.14), transparent 60%),
-    radial-gradient(30rem 24rem at 55% 115%, rgb(79 70 229 / 0.12), transparent 65%);
+    radial-gradient(60rem 34rem at 78% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(44rem 30rem at -12% 30%, rgba(129, 140, 248, 0.14), transparent 60%),
+    radial-gradient(30rem 24rem at 55% 115%, rgba(2, 132, 199, 0.12), transparent 65%);
 }
 
 .dot-grid {
-  background-image: radial-gradient(rgb(99 102 241 / 0.14) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(2, 132, 199, 0.14) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .brand-gradient-card {
-  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #4f46e5 100%);
 }
 
 .stagger > * {
@@ -137,5 +139,6 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 
 
