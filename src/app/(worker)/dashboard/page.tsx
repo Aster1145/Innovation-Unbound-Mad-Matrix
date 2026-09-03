@@ -54,8 +54,8 @@ export default async function WorkerDashboard() {
           actionLabel="Connect a demo account"
         />
         <div className="grid gap-3 sm:grid-cols-2">
-          <Link href="/cash-income" className="card flex items-center gap-3 p-4 transition hover:border-violet-300">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-violet-100 text-violet-600">
+          <Link href="/cash-income" className="card flex items-center gap-3 p-4 transition hover:border-indigo-300">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
               <Banknote className="size-5" />
             </span>
             <span>
@@ -63,7 +63,7 @@ export default async function WorkerDashboard() {
               <span className="block text-xs text-slate-500">Log a daily wage in seconds</span>
             </span>
           </Link>
-          <Link href="/settings" className="card flex items-center gap-3 p-4 transition hover:border-violet-300">
+          <Link href="/settings" className="card flex items-center gap-3 p-4 transition hover:border-indigo-300">
             <span className="flex size-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
               <BadgeCheck className="size-5" />
             </span>
@@ -95,67 +95,67 @@ export default async function WorkerDashboard() {
 
   return (
     <div className="space-y-7">
-      {/* Top Mobile/App Bar Header Card matching Reference Design */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 p-7 sm:p-9 text-white shadow-2xl shadow-purple-500/25">
-        <div className="absolute top-0 right-0 size-80 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+      {/* Top Mobile/App Bar Header Card */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-7 sm:p-9 text-white shadow-xl shadow-indigo-950/20">
+        <div className="absolute top-0 right-0 size-80 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
         <div className="relative z-10">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
-              <div className="flex size-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-display font-bold text-base shadow-sm">
+              <div className="flex size-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-display font-bold text-base shadow-sm">
                 {user.name.split(" ").map(n => n[0]).join("")}
               </div>
               <div>
-                <p className="text-xs font-bold text-purple-100">Namaste, {user.name.split(" ")[0]}</p>
-                <p className="text-[12px] font-medium text-purple-200">{WORKER_TYPES[a.profile?.workerType ?? "gig"]}</p>
+                <p className="text-xs font-bold text-indigo-200">Namaste, {user.name.split(" ")[0]}</p>
+                <p className="text-[12px] font-medium text-slate-400">{WORKER_TYPES[a.profile?.workerType ?? "gig"]}</p>
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-bold text-white backdrop-blur-md border border-white/20 shadow-sm">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white backdrop-blur-md border border-white/15 shadow-sm">
                 <Calendar className="size-3.5" /> August ▾
               </span>
-              <button className="flex size-9.5 items-center justify-center rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white hover:bg-white/25 transition">
+              <button className="flex size-9.5 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white hover:bg-white/20 transition">
                 <Bell className="size-4.5" />
               </button>
             </div>
           </div>
 
           <div className="mt-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-purple-200">Total Balance</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-indigo-300">Total Balance</p>
             <h2 className="mt-1 font-display text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
               {formatINR(a.totalIncome - a.totalExpense)}
             </h2>
           </div>
 
           <div className="mt-7 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-            <div className="rounded-2xl bg-white/12 p-4.5 backdrop-blur-md border border-white/20">
-              <p className="text-xs font-bold text-purple-200">Income</p>
-              <p className="mt-1 font-display text-xl font-bold text-emerald-300">
+            <div className="rounded-2xl bg-white/10 p-4.5 backdrop-blur-md border border-white/15">
+              <p className="text-xs font-bold text-indigo-200">Income</p>
+              <p className="mt-1 font-display text-xl font-bold text-emerald-400">
                 +{formatINR(lastMonth?.income ?? a.avgIncome)}
               </p>
             </div>
-            <div className="rounded-2xl bg-white/12 p-4.5 backdrop-blur-md border border-white/20">
-              <p className="text-xs font-bold text-purple-200">Expenses</p>
-              <p className="mt-1 font-display text-xl font-bold text-rose-300">
+            <div className="rounded-2xl bg-white/10 p-4.5 backdrop-blur-md border border-white/15">
+              <p className="text-xs font-bold text-indigo-200">Expenses</p>
+              <p className="mt-1 font-display text-xl font-bold text-rose-400">
                 -{formatINR(lastMonth?.expense ?? a.avgExpense)}
               </p>
             </div>
           </div>
 
-          {/* Quick Action Pill Buttons from reference image */}
+          {/* Quick Action Pill Buttons */}
           <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4 text-center">
-            <Link href="/cash-income" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
+            <Link href="/cash-income" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
               <PlusCircle className="size-5 text-white" />
               <span className="mt-1.5 text-xs font-bold text-white">Add Income</span>
             </Link>
-            <Link href="/transactions" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
+            <Link href="/transactions" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
               <MinusCircle className="size-5 text-white" />
               <span className="mt-1.5 text-xs font-bold text-white">Add Expense</span>
             </Link>
-            <Link href="/savings" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
+            <Link href="/savings" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
               <ArrowLeftRight className="size-5 text-white" />
               <span className="mt-1.5 text-xs font-bold text-white">Transfer</span>
             </Link>
-            <Link href="/connect" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
+            <Link href="/connect" className="flex flex-col items-center justify-center rounded-2xl bg-white/10 py-3.5 px-3 backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-[1.02] shadow-sm">
               <QrCode className="size-5 text-white" />
               <span className="mt-1.5 text-xs font-bold text-white">Scan Receipt</span>
             </Link>
@@ -165,34 +165,34 @@ export default async function WorkerDashboard() {
 
       {/* Unverified nudge */}
       {unverified.length > 0 && (
-        <div className="flex items-start gap-4 rounded-3xl border border-purple-200 bg-purple-50/90 p-5 shadow-sm">
-          <AlertTriangle className="mt-0.5 size-5 shrink-0 text-purple-600" />
+        <div className="flex items-start gap-4 rounded-3xl border border-amber-200/90 bg-amber-50/80 p-5 shadow-sm">
+          <AlertTriangle className="mt-0.5 size-5 shrink-0 text-amber-600" />
           <div className="flex-1">
-            <p className="text-sm font-bold text-purple-950">
+            <p className="text-sm font-bold text-slate-900">
               {unverified.length} income record{unverified.length > 1 ? "s" : ""} awaiting verification
             </p>
-            <p className="mt-0.5 text-xs leading-relaxed text-purple-900 font-medium">
+            <p className="mt-0.5 text-xs leading-relaxed text-slate-600 font-medium">
               Self-reported income has low confidence. Ask your employer to confirm it on
               FinancialBridge to raise your Income Confidence Score.
             </p>
           </div>
-          <Link href="/income" className="shrink-0 rounded-2xl bg-purple-600 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-purple-700">
+          <Link href="/income" className="shrink-0 rounded-2xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-indigo-700">
             Review
           </Link>
         </div>
       )}
 
       {/* Cohesive Score Hero */}
-      <Card className="overflow-hidden !p-0 border-purple-100 shadow-xl shadow-purple-500/5">
+      <Card className="overflow-hidden !p-0">
         <div className="grid md:grid-cols-[280px_1fr]">
-          <div className="flex flex-col items-center justify-center bg-gradient-to-b from-purple-50 via-violet-50/80 to-purple-100/50 border-b md:border-b-0 md:border-r border-purple-100 px-8 py-8 text-center">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-purple-600 uppercase">
+          <div className="flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 via-indigo-50/40 to-slate-50 border-b md:border-b-0 md:border-r border-slate-200/80 px-8 py-8 text-center">
+            <p className="text-[11px] font-bold tracking-[0.16em] text-indigo-600 uppercase">
               Financial Resilience Score
             </p>
             <div className="mt-4">
               <ScoreRing score={a.resilience.score} max={900} size={180} />
             </div>
-            <p className="mt-3.5 text-sm font-bold text-violet-700">{a.resilience.band}</p>
+            <p className="mt-3.5 text-sm font-bold text-indigo-700">{a.resilience.band}</p>
             <p className="mt-1 max-w-48 text-[11px] leading-relaxed text-slate-500 font-medium">
               Prototype indicator based on your available data
             </p>
@@ -202,7 +202,7 @@ export default async function WorkerDashboard() {
               <h3 className="font-display text-[16px] font-bold text-slate-900">
                 Why this score
               </h3>
-              <span className="rounded-full bg-purple-100 px-3 py-1 text-[10.5px] font-bold tracking-wide text-purple-700 uppercase">
+              <span className="rounded-full bg-indigo-50 border border-indigo-100 px-3 py-1 text-[10.5px] font-bold tracking-wide text-indigo-700 uppercase">
                 Transparent model
               </span>
             </div>
@@ -216,11 +216,11 @@ export default async function WorkerDashboard() {
                         {Math.round(f.weight * 100)}%
                       </span>
                     </span>
-                    <span className="font-extrabold text-violet-900">{f.value}/100</span>
+                    <span className="font-extrabold text-indigo-600">{f.value}/100</span>
                   </div>
                   <Progress
                     value={f.value}
-                    tone={f.value >= 75 ? "purple" : f.value >= 55 ? "amber" : "rose"}
+                    tone={f.value >= 75 ? "indigo" : f.value >= 55 ? "amber" : "rose"}
                   />
                 </div>
               ))}
@@ -229,9 +229,8 @@ export default async function WorkerDashboard() {
         </div>
       </Card>
 
-      {/* Category breakdown (Donut Ring from Mockup Image) + Income Confidence */}
+      {/* Category breakdown + Income Confidence */}
       <div className="grid gap-5 md:grid-cols-2">
-        {/* Category Ring Chart matching left phone in reference image */}
         <Card>
           <CardHeader
             title="Expenses by Category"
@@ -247,8 +246,8 @@ export default async function WorkerDashboard() {
             ]} />
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-            {a.categoryBreakdown.map((cat, i) => (
-              <span key={cat.name} className="rounded-full bg-violet-50 border border-violet-100 px-3 py-1 text-[11px] font-bold text-violet-700">
+            {a.categoryBreakdown.map((cat) => (
+              <span key={cat.name} className="rounded-full bg-indigo-50 border border-indigo-100 px-3 py-1 text-[11px] font-bold text-indigo-700">
                 {cat.name}: {formatINR(cat.value)}
               </span>
             ))}
@@ -260,10 +259,10 @@ export default async function WorkerDashboard() {
           <Card className="flex items-center gap-5">
             <div className="relative flex size-20 shrink-0 items-center justify-center">
               <svg viewBox="0 0 80 80" className="size-20 -rotate-90">
-                <circle cx="40" cy="40" r="34" fill="none" stroke="#ede9fe" strokeWidth="8" />
+                <circle cx="40" cy="40" r="34" fill="none" stroke="#e2e8f0" strokeWidth="8" />
                 <circle
                   cx="40" cy="40" r="34" fill="none"
-                  stroke={a.confidence.score >= 85 ? "#8b5cf6" : a.confidence.score >= 60 ? "#f59e0b" : "#f43f5e"}
+                  stroke={a.confidence.score >= 85 ? "#6366f1" : a.confidence.score >= 60 ? "#f59e0b" : "#f43f5e"}
                   strokeWidth="8" strokeLinecap="round"
                   strokeDasharray={2 * Math.PI * 34}
                   strokeDashoffset={2 * Math.PI * 34 * (1 - a.confidence.score / 100)}
@@ -278,7 +277,7 @@ export default async function WorkerDashboard() {
                 Income Confidence
               </p>
               <div className="mt-1"><ConfidenceBadge band={a.confidence.band} /></div>
-              <Link href="/income" className="mt-2 inline-flex items-center gap-1 text-[11.5px] font-bold text-violet-600 hover:text-violet-700">
+              <Link href="/income" className="mt-2 inline-flex items-center gap-1 text-[11.5px] font-bold text-indigo-600 hover:text-indigo-700">
                 Why confidence score matters <ArrowRight className="size-3.5" />
               </Link>
             </div>
@@ -299,23 +298,23 @@ export default async function WorkerDashboard() {
         </div>
       </div>
 
-      {/* Recent Transactions List (Matching Right Phone in reference image) */}
+      {/* Recent Transactions List */}
       <Card>
         <CardHeader
           title="Recent Transactions"
           subtitle="Consented imports & verified income entries"
           action={
-            <Link href="/transactions" className="inline-flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-700">
+            <Link href="/transactions" className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700">
               View all <ArrowRight className="size-3.5" />
             </Link>
           }
         />
-        <div className="divide-y divide-violet-100">
+        <div className="divide-y divide-slate-100">
           {recentTxs.map((tx) => (
             <div key={tx.id} className="flex items-center justify-between py-3.5">
               <div className="flex items-center gap-3.5">
                 <span className={`flex size-10.5 items-center justify-center rounded-2xl ${
-                  tx.type === "credit" ? "bg-emerald-100 text-emerald-700" : "bg-purple-100 text-purple-700"
+                  tx.type === "credit" ? "bg-emerald-50 text-emerald-600" : "bg-slate-100 text-slate-600"
                 }`}>
                   {tx.type === "credit" ? <PlusCircle className="size-5" /> : <Receipt className="size-5" />}
                 </span>
@@ -349,7 +348,7 @@ export default async function WorkerDashboard() {
           title="AI Financial Insights"
           subtitle="Responsible, data-based observations — not guaranteed advice"
           action={
-            <Link href="/insights" className="inline-flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-700">
+            <Link href="/insights" className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700">
               View all <ArrowRight className="size-3.5" />
             </Link>
           }
@@ -362,17 +361,17 @@ export default async function WorkerDashboard() {
                 ins.type === "warning"
                   ? "border-amber-200 bg-amber-50/80"
                   : ins.type === "positive"
-                    ? "border-purple-200 bg-purple-50/80"
-                    : "border-violet-200 bg-violet-50/80"
+                    ? "border-indigo-200 bg-indigo-50/80"
+                    : "border-slate-200 bg-slate-50/80"
               }`}
             >
               <p className="flex items-center gap-2 text-[13.5px] font-bold text-slate-900">
                 {ins.type === "warning" ? (
                   <AlertTriangle className="size-4.5 text-amber-600" />
                 ) : ins.type === "positive" ? (
-                  <CheckCircle2 className="size-4.5 text-purple-600" />
+                  <CheckCircle2 className="size-4.5 text-indigo-600" />
                 ) : (
-                  <Info className="size-4.5 text-violet-600" />
+                  <Info className="size-4.5 text-slate-600" />
                 )}
                 {ins.title}
               </p>
@@ -386,4 +385,5 @@ export default async function WorkerDashboard() {
     </div>
   );
 }
+
 

@@ -4,25 +4,25 @@
   --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
 
-  --color-ink-950: #0d0714;
-  --color-ink-900: #130b24;
-  --color-ink-800: #1e1238;
-  --color-ink-700: #2c1a4d;
+  --color-ink-950: #0f172a;
+  --color-ink-900: #1e293b;
+  --color-ink-800: #334155;
+  --color-ink-700: #475569;
 
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede9fe;
-  --color-brand-200: #ddd6fe;
-  --color-brand-300: #c4b5fd;
-  --color-brand-400: #a78bfa;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
-  --color-brand-800: #5b21b6;
-  --color-brand-900: #4c1d95;
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
 
-  --shadow-card: 0 4px 20px -2px rgb(139 92 246 / 0.08), 0 2px 6px -1px rgb(15 23 42 / 0.04);
-  --shadow-lift: 0 16px 40px -8px rgb(124 58 237 / 0.22);
-  --shadow-glow: 0 0 60px -10px rgb(168 85 247 / 0.45);
+  --shadow-card: 0 2px 8px -2px rgb(15 23 42 / 0.06), 0 1px 3px -1px rgb(15 23 42 / 0.04);
+  --shadow-lift: 0 16px 36px -8px rgb(79 70 229 / 0.18);
+  --shadow-glow: 0 0 50px -10px rgb(99 102 241 / 0.35);
 
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-fade-in: fade-in 1s ease both;
@@ -31,7 +31,7 @@
   --animate-pulse-soft: pulse-soft 2.6s ease-in-out infinite;
 
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(28px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
   @keyframes fade-in {
@@ -44,7 +44,7 @@
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
+    50% { transform: translateY(-12px); }
   }
   @keyframes pulse-soft {
     0%, 100% { opacity: 1; }
@@ -60,33 +60,34 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   background-color: #f8fafc;
+  color: #0f172a;
 }
 
 ::selection {
   background: var(--color-brand-200);
-  color: var(--color-ink-900);
+  color: var(--color-ink-950);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c4b5fd;
-  border-radius: 8px;
+  background: #cbd5e1;
+  border-radius: 9999px;
 }
 .dark-scroll::-webkit-scrollbar-thumb {
-  background: #4c1d95;
-  border-radius: 8px;
+  background: #475569;
+  border-radius: 9999px;
 }
 
 .card {
   background: #ffffff;
-  border: 1px solid rgb(237 233 254 / 0.9);
-  border-radius: 1.5rem;
+  border: 1px solid rgb(226 232 240 / 0.85);
+  border-radius: 1.25rem;
   box-shadow: var(--shadow-card);
 }
 
@@ -97,7 +98,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, #a855f7 0%, #c084fc 40%, #f472b6 90%);
+  background: linear-gradient(100deg, #818cf8 0%, #a5b4fc 40%, #c084fc 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -105,18 +106,18 @@ body {
 
 .hero-mesh {
   background:
-    radial-gradient(60rem 34rem at 78% -10%, rgb(139 92 246 / 0.22), transparent 60%),
-    radial-gradient(44rem 30rem at -12% 30%, rgb(192 132 252 / 0.18), transparent 60%),
-    radial-gradient(30rem 24rem at 55% 115%, rgb(124 58 237 / 0.15), transparent 65%);
+    radial-gradient(60rem 34rem at 78% -10%, rgb(99 102 241 / 0.18), transparent 60%),
+    radial-gradient(44rem 30rem at -12% 30%, rgb(139 92 246 / 0.14), transparent 60%),
+    radial-gradient(30rem 24rem at 55% 115%, rgb(79 70 229 / 0.12), transparent 65%);
 }
 
 .dot-grid {
-  background-image: radial-gradient(rgb(168 85 247 / 0.18) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(rgb(99 102 241 / 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-.purple-gradient-card {
-  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #6366f1 100%);
+.brand-gradient-card {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
 }
 
 .stagger > * {
@@ -136,4 +137,5 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 
