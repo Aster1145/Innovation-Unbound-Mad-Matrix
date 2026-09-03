@@ -317,18 +317,18 @@ export default async function LandingPage() {
               <span className="font-semibold text-slate-200">Income Confidence Score (0–100%)</span>{" "}
               shows how strongly the reported income is backed by verification.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-slate-400">
-              <li className="flex gap-3">
-                <FileCheck2 className="mt-0.5 size-4.5 shrink-0 text-emerald-400" />
-                Self-reported income → <span className="text-rose-300">low confidence</span>, never auto-trusted
+            <ul className="mt-6 space-y-3.5 text-sm text-purple-200/80">
+              <li className="flex items-start gap-3">
+                <FileCheck2 className="mt-0.5 size-4.5 shrink-0 text-purple-400" />
+                <span>Self-reported income → <span className="font-semibold text-rose-300">low confidence</span>, never auto-trusted</span>
               </li>
-              <li className="flex gap-3">
-                <PiggyBank className="mt-0.5 size-4.5 shrink-0 text-emerald-400" />
-                Digital records / work evidence → <span className="text-amber-300">medium confidence</span>
+              <li className="flex items-start gap-3">
+                <PiggyBank className="mt-0.5 size-4.5 shrink-0 text-purple-400" />
+                <span>Digital records / work evidence → <span className="font-semibold text-amber-300">medium confidence</span></span>
               </li>
-              <li className="flex gap-3">
-                <BadgeCheck className="mt-0.5 size-4.5 shrink-0 text-emerald-400" />
-                Employer or payment verification → <span className="text-emerald-300">high confidence</span>
+              <li className="flex items-start gap-3">
+                <BadgeCheck className="mt-0.5 size-4.5 shrink-0 text-purple-400" />
+                <span>Employer or payment verification → <span className="font-semibold text-emerald-300">high confidence</span></span>
               </li>
             </ul>
           </div>

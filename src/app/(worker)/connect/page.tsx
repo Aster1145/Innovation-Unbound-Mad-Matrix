@@ -24,26 +24,34 @@ export default async function ConnectPage() {
             <LockKeyhole className="size-4.5 text-emerald-600" />
             Consent-first, credential-free
           </h3>
-          <ul className="mt-3.5 space-y-3 text-[13px] leading-relaxed text-slate-600">
-            <li className="flex gap-2.5">
-              <ShieldCheck className="mt-0.5 size-4 shrink-0 text-emerald-500" />
-              This is a <span className="font-semibold">hackathon demo</span> with mock
-              institutions and synthetic data — no real bank connectivity.
+          <ul className="mt-3.5 space-y-3.5 text-[13px] leading-relaxed text-slate-600">
+            <li className="flex items-start gap-3">
+              <ShieldCheck className="mt-0.5 size-4.5 shrink-0 text-violet-600" />
+              <span>
+                This is a <span className="font-bold text-slate-900">hackathon demo</span> with mock
+                institutions and synthetic data — no real bank connectivity.
+              </span>
             </li>
-            <li className="flex gap-2.5">
-              <ShieldCheck className="mt-0.5 size-4 shrink-0 text-emerald-500" />
-              FinancialBridge <span className="font-semibold">never asks for bank passwords,
-              PINs, OTPs or credentials</span> — and neither should anyone else.
+            <li className="flex items-start gap-3">
+              <ShieldCheck className="mt-0.5 size-4.5 shrink-0 text-violet-600" />
+              <span>
+                FinancialBridge <span className="font-bold text-slate-900">never asks for bank passwords,
+                PINs, OTPs or credentials</span> — and neither should anyone else.
+              </span>
             </li>
-            <li className="flex gap-2.5">
-              <ShieldCheck className="mt-0.5 size-4 shrink-0 text-emerald-500" />
-              You approve exactly which data types are shared, and you may revoke
-              consent at any time.
+            <li className="flex items-start gap-3">
+              <ShieldCheck className="mt-0.5 size-4.5 shrink-0 text-violet-600" />
+              <span>
+                You approve exactly which data types are shared, and you may revoke
+                consent at any time.
+              </span>
             </li>
-            <li className="flex gap-2.5">
-              <ShieldCheck className="mt-0.5 size-4 shrink-0 text-emerald-500" />
-              In production, data would flow only through authorized, consent-based
-              financial-data-sharing mechanisms (e.g. the Account Aggregator framework).
+            <li className="flex items-start gap-3">
+              <ShieldCheck className="mt-0.5 size-4.5 shrink-0 text-violet-600" />
+              <span>
+                In production, data would flow only through authorized, consent-based
+                financial-data-sharing mechanisms (e.g. the Account Aggregator framework).
+              </span>
             </li>
           </ul>
         </Card>
