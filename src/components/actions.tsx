@@ -27,9 +27,9 @@ async function postJSON(url: string, body: unknown) {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20";
+  "w-full rounded-2xl border border-violet-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-violet-600 focus:ring-4 focus:ring-violet-500/15 shadow-sm";
 
-const labelCls = "mb-1.5 block text-xs font-semibold tracking-wide text-slate-600";
+const labelCls = "mb-1.5 block text-xs font-bold tracking-wide text-slate-700";
 
 function Field({
   label,
@@ -44,7 +44,7 @@ function Field({
     <div>
       <label className={labelCls}>{label}</label>
       {children}
-      {hint && <p className="mt-1 text-[11px] text-slate-400">{hint}</p>}
+      {hint && <p className="mt-1 text-[11px] text-slate-400 font-medium">{hint}</p>}
     </div>
   );
 }
@@ -52,7 +52,7 @@ function Field({
 function ErrorBox({ msg }: { msg: string }) {
   if (!msg) return null;
   return (
-    <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-700">
+    <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs font-bold text-rose-700">
       {msg}
     </div>
   );
@@ -84,7 +84,7 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-4.5">
       <Field label="Email address">
         <input name="email" type="email" required className={inputCls} placeholder="you@example.com" />
       </Field>
@@ -94,7 +94,7 @@ export function LoginForm() {
       <ErrorBox msg={error} />
       <button
         disabled={loading}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-purple-500/20 transition hover:opacity-95 disabled:opacity-60"
       >
         {loading && <Loader2 className="size-4 animate-spin" />}
         Sign in

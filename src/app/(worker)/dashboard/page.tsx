@@ -94,70 +94,70 @@ export default async function WorkerDashboard() {
   const lastMonth = a.monthly.at(-1);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {/* Top Mobile/App Bar Header Card matching Reference Design */}
-      <div className="relative overflow-hidden rounded-3xl purple-gradient-card p-6 sm:p-8 text-white shadow-xl shadow-purple-500/20">
-        <div className="absolute top-0 right-0 size-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 p-7 sm:p-9 text-white shadow-2xl shadow-purple-500/25">
+        <div className="absolute top-0 right-0 size-80 rounded-full bg-white/10 blur-3xl pointer-events-none" />
         <div className="relative z-10">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-display font-bold text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="flex size-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-display font-bold text-base shadow-sm">
                 {user.name.split(" ").map(n => n[0]).join("")}
               </div>
               <div>
-                <p className="text-xs font-semibold text-purple-100">Namaste, {user.name.split(" ")[0]}</p>
-                <p className="text-[11px] text-purple-200">{WORKER_TYPES[a.profile?.workerType ?? "gig"]}</p>
+                <p className="text-xs font-bold text-purple-100">Namaste, {user.name.split(" ")[0]}</p>
+                <p className="text-[12px] font-medium text-purple-200">{WORKER_TYPES[a.profile?.workerType ?? "gig"]}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-white backdrop-blur-md border border-white/20">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-bold text-white backdrop-blur-md border border-white/20 shadow-sm">
                 <Calendar className="size-3.5" /> August ▾
               </span>
-              <button className="flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white hover:bg-white/25">
-                <Bell className="size-4" />
+              <button className="flex size-9.5 items-center justify-center rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white hover:bg-white/25 transition">
+                <Bell className="size-4.5" />
               </button>
             </div>
           </div>
 
-          <div className="mt-6">
-            <p className="text-xs font-bold uppercase tracking-wider text-purple-200">Total Balance</p>
-            <h2 className="mt-1 font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <div className="mt-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-purple-200">Total Balance</p>
+            <h2 className="mt-1 font-display text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
               {formatINR(a.totalIncome - a.totalExpense)}
             </h2>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl bg-white/12 p-3.5 backdrop-blur-lg border border-white/20">
-              <p className="text-[11px] font-bold text-purple-200">Income</p>
-              <p className="mt-1 font-display text-lg font-bold text-emerald-300">
+          <div className="mt-7 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            <div className="rounded-2xl bg-white/12 p-4.5 backdrop-blur-md border border-white/20">
+              <p className="text-xs font-bold text-purple-200">Income</p>
+              <p className="mt-1 font-display text-xl font-bold text-emerald-300">
                 +{formatINR(lastMonth?.income ?? a.avgIncome)}
               </p>
             </div>
-            <div className="rounded-2xl bg-white/12 p-3.5 backdrop-blur-lg border border-white/20">
-              <p className="text-[11px] font-bold text-purple-200">Expenses</p>
-              <p className="mt-1 font-display text-lg font-bold text-rose-300">
+            <div className="rounded-2xl bg-white/12 p-4.5 backdrop-blur-md border border-white/20">
+              <p className="text-xs font-bold text-purple-200">Expenses</p>
+              <p className="mt-1 font-display text-xl font-bold text-rose-300">
                 -{formatINR(lastMonth?.expense ?? a.avgExpense)}
               </p>
             </div>
           </div>
 
           {/* Quick Action Pill Buttons from reference image */}
-          <div className="mt-6 grid grid-cols-4 gap-2 text-center">
-            <Link href="/cash-income" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3 backdrop-blur-lg border border-white/25 transition hover:bg-white/25">
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4 text-center">
+            <Link href="/cash-income" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
               <PlusCircle className="size-5 text-white" />
-              <span className="mt-1 text-[10.5px] font-bold text-white">Add Income</span>
+              <span className="mt-1.5 text-xs font-bold text-white">Add Income</span>
             </Link>
-            <Link href="/transactions" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3 backdrop-blur-lg border border-white/25 transition hover:bg-white/25">
+            <Link href="/transactions" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
               <MinusCircle className="size-5 text-white" />
-              <span className="mt-1 text-[10.5px] font-bold text-white">Add Expense</span>
+              <span className="mt-1.5 text-xs font-bold text-white">Add Expense</span>
             </Link>
-            <Link href="/savings" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3 backdrop-blur-lg border border-white/25 transition hover:bg-white/25">
+            <Link href="/savings" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
               <ArrowLeftRight className="size-5 text-white" />
-              <span className="mt-1 text-[10.5px] font-bold text-white">Transfer</span>
+              <span className="mt-1.5 text-xs font-bold text-white">Transfer</span>
             </Link>
-            <Link href="/connect" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3 backdrop-blur-lg border border-white/25 transition hover:bg-white/25">
+            <Link href="/connect" className="flex flex-col items-center justify-center rounded-2xl bg-white/15 py-3.5 px-3 backdrop-blur-md border border-white/25 transition-all hover:bg-white/25 hover:scale-[1.02] shadow-sm">
               <QrCode className="size-5 text-white" />
-              <span className="mt-1 text-[10.5px] font-bold text-white">Scan Receipt</span>
+              <span className="mt-1.5 text-xs font-bold text-white">Scan Receipt</span>
             </Link>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default async function WorkerDashboard() {
 
       {/* Unverified nudge */}
       {unverified.length > 0 && (
-        <div className="flex items-start gap-3.5 rounded-3xl border border-purple-200 bg-purple-50/80 p-4.5 shadow-sm">
+        <div className="flex items-start gap-4 rounded-3xl border border-purple-200 bg-purple-50/90 p-5 shadow-sm">
           <AlertTriangle className="mt-0.5 size-5 shrink-0 text-purple-600" />
           <div className="flex-1">
             <p className="text-sm font-bold text-purple-950">
@@ -176,28 +176,28 @@ export default async function WorkerDashboard() {
               FinancialBridge to raise your Income Confidence Score.
             </p>
           </div>
-          <Link href="/income" className="shrink-0 rounded-2xl bg-purple-600 px-3.5 py-2 text-xs font-bold text-white shadow-sm hover:bg-purple-700">
+          <Link href="/income" className="shrink-0 rounded-2xl bg-purple-600 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-purple-700">
             Review
           </Link>
         </div>
       )}
 
-      {/* Score hero */}
-      <Card className="overflow-hidden !p-0">
-        <div className="grid md:grid-cols-[auto_1fr]">
-          <div className="hero-mesh flex flex-col items-center bg-ink-950 px-8 py-8 text-center">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-purple-300 uppercase">
+      {/* Cohesive Score Hero */}
+      <Card className="overflow-hidden !p-0 border-purple-100 shadow-xl shadow-purple-500/5">
+        <div className="grid md:grid-cols-[280px_1fr]">
+          <div className="flex flex-col items-center justify-center bg-gradient-to-b from-purple-50 via-violet-50/80 to-purple-100/50 border-b md:border-b-0 md:border-r border-purple-100 px-8 py-8 text-center">
+            <p className="text-[11px] font-bold tracking-[0.16em] text-purple-600 uppercase">
               Financial Resilience Score
             </p>
             <div className="mt-4">
-              <ScoreRing score={a.resilience.score} max={900} size={188} dark />
+              <ScoreRing score={a.resilience.score} max={900} size={180} />
             </div>
-            <p className="mt-3 text-sm font-bold text-purple-300">{a.resilience.band}</p>
-            <p className="mt-1 max-w-52 text-[11px] leading-relaxed text-slate-400 font-medium">
+            <p className="mt-3.5 text-sm font-bold text-violet-700">{a.resilience.band}</p>
+            <p className="mt-1 max-w-48 text-[11px] leading-relaxed text-slate-500 font-medium">
               Prototype indicator based on your available data
             </p>
           </div>
-          <div className="p-6">
+          <div className="p-7">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-[16px] font-bold text-slate-900">
                 Why this score
@@ -206,17 +206,17 @@ export default async function WorkerDashboard() {
                 Transparent model
               </span>
             </div>
-            <div className="mt-4 space-y-3.5">
+            <div className="mt-5 space-y-4">
               {a.resilience.factors.map((f) => (
                 <div key={f.key}>
-                  <div className="mb-1 flex items-center justify-between text-xs">
-                    <span className="font-semibold text-slate-700">
+                  <div className="mb-1.5 flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-700">
                       {f.label}
-                      <span className="ml-1.5 text-[10px] text-slate-400">
+                      <span className="ml-1.5 text-[10px] font-semibold text-slate-400">
                         {Math.round(f.weight * 100)}%
                       </span>
                     </span>
-                    <span className="font-bold text-purple-900">{f.value}/100</span>
+                    <span className="font-extrabold text-violet-900">{f.value}/100</span>
                   </div>
                   <Progress
                     value={f.value}
