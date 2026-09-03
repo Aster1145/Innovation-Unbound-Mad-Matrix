@@ -23,11 +23,13 @@ const inrShort = (v: number) =>
 const inrFull = (v: number) => `₹${Math.round(v).toLocaleString("en-IN")}`;
 
 const tooltipStyle = {
-  borderRadius: 12,
-  border: "1px solid #e2e8f0",
-  boxShadow: "0 8px 24px -8px rgba(15,23,42,0.15)",
+  borderRadius: 16,
+  border: "1px solid #ede9fe",
+  boxShadow: "0 12px 32px -8px rgba(124, 58, 237, 0.15)",
   fontSize: 12,
-  padding: "8px 12px",
+  fontWeight: 600,
+  padding: "10px 14px",
+  backgroundColor: "#ffffff",
 };
 
 export interface SeriesPoint {
@@ -43,21 +45,21 @@ export function IncomeExpenseArea({ data }: { data: SeriesPoint[] }) {
       <AreaChart data={data} margin={{ top: 8, right: 8, left: -8, bottom: 0 }}>
         <defs>
           <linearGradient id="gi" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#10b981" stopOpacity={0.32} />
-            <stop offset="100%" stopColor="#10b981" stopOpacity={0.02} />
+            <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.35} />
+            <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0.02} />
           </linearGradient>
           <linearGradient id="ge" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#f59e0b" stopOpacity={0.22} />
-            <stop offset="100%" stopColor="#f59e0b" stopOpacity={0.02} />
+            <stop offset="0%" stopColor="#f43f5e" stopOpacity={0.22} />
+            <stop offset="100%" stopColor="#f43f5e" stopOpacity={0.02} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
         <XAxis dataKey="label" tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
         <YAxis tickFormatter={inrShort} tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
         <Tooltip formatter={(v) => inrFull(Number(v))} contentStyle={tooltipStyle} />
-        <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 12 }} />
-        <Area name="Income" type="monotone" dataKey="income" stroke="#059669" strokeWidth={2.4} fill="url(#gi)" />
-        <Area name="Expenses" type="monotone" dataKey="expense" stroke="#f59e0b" strokeWidth={2} fill="url(#ge)" />
+        <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 12, fontWeight: 600 }} />
+        <Area name="Income" type="monotone" dataKey="income" stroke="#7c3aed" strokeWidth={2.8} fill="url(#gi)" />
+        <Area name="Expenses" type="monotone" dataKey="expense" stroke="#f43f5e" strokeWidth={2.2} fill="url(#ge)" />
       </AreaChart>
     </ResponsiveContainer>
   );
@@ -67,21 +69,21 @@ export function VolatilityBars({ data, avg }: { data: SeriesPoint[]; avg: number
   return (
     <ResponsiveContainer width="100%" height={240}>
       <BarChart data={data} margin={{ top: 8, right: 8, left: -8, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
         <XAxis dataKey="label" tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
         <YAxis tickFormatter={inrShort} tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
-        <Tooltip formatter={(v) => inrFull(Number(v))} contentStyle={tooltipStyle} cursor={{ fill: "#f1f5f9" }} />
+        <Tooltip formatter={(v) => inrFull(Number(v))} contentStyle={tooltipStyle} cursor={{ fill: "#f5f3ff" }} />
         <ReferenceLine
           y={avg}
-          stroke="#6366f1"
+          stroke="#8b5cf6"
           strokeDasharray="5 4"
-          label={{ value: `avg ${inrFull(avg)}`, position: "insideTopRight", fontSize: 10, fill: "#6366f1" }}
+          label={{ value: `avg ${inrFull(avg)}`, position: "insideTopRight", fontSize: 10, fill: "#7c3aed", fontWeight: 700 }}
         />
-        <Bar name="Monthly income" dataKey="income" radius={[6, 6, 0, 0]} maxBarSize={44}>
+        <Bar name="Monthly income" dataKey="income" radius={[8, 8, 0, 0]} maxBarSize={44}>
           {data.map((d, i) => (
             <Cell
               key={i}
-              fill={d.income >= avg ? "#10b981" : "#fbbf24"}
+              fill={d.income >= avg ? "#8b5cf6" : "#c084fc"}
               fillOpacity={0.9}
             />
           ))}
@@ -97,23 +99,23 @@ export function SavingsGrowth({ data }: { data: { label: string; saved: number; 
       <AreaChart data={data} margin={{ top: 8, right: 8, left: -8, bottom: 0 }}>
         <defs>
           <linearGradient id="gs" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0ea5e9" stopOpacity={0.3} />
-            <stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.02} />
+            <stop offset="0%" stopColor="#06b6d4" stopOpacity={0.35} />
+            <stop offset="100%" stopColor="#06b6d4" stopOpacity={0.02} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
         <XAxis dataKey="label" tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
         <YAxis tickFormatter={inrShort} tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
         <Tooltip formatter={(v) => inrFull(Number(v))} contentStyle={tooltipStyle} />
-        <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 12 }} />
-        <Area name="Cumulative savings" type="monotone" dataKey="cumulative" stroke="#0284c7" strokeWidth={2.4} fill="url(#gs)" />
-        <Bar name="Monthly deposit" dataKey="saved" fill="#7dd3fc" radius={[5, 5, 0, 0]} maxBarSize={26} />
+        <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 12, fontWeight: 600 }} />
+        <Area name="Cumulative savings" type="monotone" dataKey="cumulative" stroke="#0891b2" strokeWidth={2.8} fill="url(#gs)" />
+        <Bar name="Monthly deposit" dataKey="saved" fill="#a5f3fc" radius={[6, 6, 0, 0]} maxBarSize={26} />
       </AreaChart>
     </ResponsiveContainer>
   );
 }
 
-const PIE_COLORS = ["#059669", "#f59e0b", "#0ea5e9", "#8b5cf6", "#f43f5e", "#14b8a6", "#f97316", "#64748b"];
+const PIE_COLORS = ["#8b5cf6", "#ec4899", "#14b8a6", "#3b82f6", "#f59e0b", "#a855f7", "#06b6d4", "#f43f5e"];
 
 export function ExpenseDonut({ data }: { data: { name: string; value: number }[] }) {
   return (
@@ -123,10 +125,10 @@ export function ExpenseDonut({ data }: { data: { name: string; value: number }[]
           data={data}
           dataKey="value"
           nameKey="name"
-          innerRadius={58}
-          outerRadius={88}
-          paddingAngle={2.5}
-          strokeWidth={2}
+          innerRadius={62}
+          outerRadius={92}
+          paddingAngle={3}
+          strokeWidth={3}
           stroke="#fff"
         >
           {data.map((_, i) => (
@@ -134,8 +136,9 @@ export function ExpenseDonut({ data }: { data: { name: string; value: number }[]
           ))}
         </Pie>
         <Tooltip formatter={(v) => inrFull(Number(v))} contentStyle={tooltipStyle} />
-        <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 11 }} layout="vertical" align="right" verticalAlign="middle" />
+        <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11, fontWeight: 600 }} layout="vertical" align="right" verticalAlign="middle" />
       </PieChart>
     </ResponsiveContainer>
   );
 }
+

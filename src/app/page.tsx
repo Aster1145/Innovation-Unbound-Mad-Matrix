@@ -98,14 +98,14 @@ export default async function LandingPage() {
       <header className="sticky top-0 z-40 border-b border-white/5 bg-ink-950/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <div className="flex items-center gap-2.5">
-            <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-ink-950 shadow-glow">
-              <Landmark className="size-4.5" />
+            <span className="flex size-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-violet-600 via-purple-600 to-indigo-600 text-white shadow-glow">
+              <Landmark className="size-5" />
             </span>
-            <span className="font-display text-[15px] font-bold tracking-tight text-white">
+            <span className="font-display text-[16px] font-bold tracking-tight text-white">
               Gig FinancialBridge
             </span>
           </div>
-          <nav className="hidden items-center gap-7 text-sm font-medium text-slate-400 md:flex">
+          <nav className="hidden items-center gap-7 text-sm font-semibold text-purple-200/80 md:flex">
             <a href="#problem" className="transition hover:text-white">The problem</a>
             <a href="#how" className="transition hover:text-white">How it works</a>
             <a href="#score" className="transition hover:text-white">Scoring</a>
@@ -115,7 +115,7 @@ export default async function LandingPage() {
             {user ? (
               <Link
                 href={dashboardPath(user.role)}
-                className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-ink-950 transition hover:bg-emerald-400"
+                className="rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-purple-500/20 transition hover:opacity-90"
               >
                 Open dashboard
               </Link>
@@ -123,13 +123,13 @@ export default async function LandingPage() {
               <>
                 <Link
                   href="/login"
-                  className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-300 transition hover:text-white"
+                  className="rounded-2xl px-4 py-2.5 text-sm font-bold text-purple-200 transition hover:text-white"
                 >
                   Sign in
                 </Link>
                 <Link
                   href="/register"
-                  className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-ink-950 transition hover:bg-emerald-400"
+                  className="rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-purple-500/20 transition hover:opacity-90"
                 >
                   Get started
                 </Link>

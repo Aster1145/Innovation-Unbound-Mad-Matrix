@@ -11,7 +11,7 @@ export function Card({
   className?: string;
   children: ReactNode;
 }) {
-  return <div className={`card p-5 ${className}`}>{children}</div>;
+  return <div className={`card p-5.5 ${className}`}>{children}</div>;
 }
 
 export function CardHeader({
@@ -24,12 +24,12 @@ export function CardHeader({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-4 flex items-start justify-between gap-3">
+    <div className="mb-4.5 flex items-start justify-between gap-3">
       <div>
-        <h3 className="font-display text-[15px] font-semibold tracking-tight text-slate-900">
+        <h3 className="font-display text-[16px] font-bold tracking-tight text-slate-900">
           {title}
         </h3>
-        {subtitle && <p className="mt-0.5 text-[13px] text-slate-500">{subtitle}</p>}
+        {subtitle && <p className="mt-0.5 text-[13px] font-medium text-slate-500">{subtitle}</p>}
       </div>
       {action}
     </div>
@@ -84,19 +84,19 @@ export function Stat({
         ? "text-amber-600"
         : tone === "bad"
           ? "text-rose-600"
-          : "text-slate-900";
+          : "text-violet-900";
   return (
-    <div className="card p-4">
+    <div className="card p-4.5 transition-all hover:shadow-lg hover:shadow-violet-500/5">
       <div className="flex items-center justify-between">
-        <p className="text-[11px] font-semibold tracking-[0.08em] text-slate-400 uppercase">
+        <p className="text-[11px] font-bold tracking-[0.08em] text-slate-400 uppercase">
           {label}
         </p>
-        {icon && <span className="text-slate-300">{icon}</span>}
+        {icon && <span className="text-violet-400">{icon}</span>}
       </div>
-      <p className={`mt-1.5 font-display text-xl font-bold tracking-tight sm:text-2xl ${toneText}`}>
+      <p className={`mt-2 font-display text-xl font-bold tracking-tight sm:text-2xl ${toneText}`}>
         {value}
       </p>
-      {sub && <p className="mt-0.5 text-xs leading-snug text-slate-500">{sub}</p>}
+      {sub && <p className="mt-1 text-xs leading-snug font-medium text-slate-500">{sub}</p>}
     </div>
   );
 }
@@ -109,11 +109,12 @@ const badgeTones: Record<string, string> = {
   rose: "bg-rose-50 text-rose-700 ring-rose-600/20",
   slate: "bg-slate-100 text-slate-600 ring-slate-500/15",
   sky: "bg-sky-50 text-sky-700 ring-sky-600/20",
-  violet: "bg-violet-50 text-violet-700 ring-violet-600/20",
+  violet: "bg-violet-100 text-violet-700 ring-violet-600/25",
+  purple: "bg-purple-100 text-purple-700 ring-purple-600/25",
 };
 
 export function Badge({
-  tone = "slate",
+  tone = "violet",
   children,
   dot = true,
 }: {
@@ -123,9 +124,9 @@ export function Badge({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${badgeTones[tone]}`}
+      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold ring-1 ring-inset ${badgeTones[tone]}`}
     >
-      {dot && <span className="size-1.5 rounded-full bg-current opacity-70" />}
+      {dot && <span className="size-1.5 rounded-full bg-current opacity-80" />}
       {children}
     </span>
   );
@@ -147,23 +148,25 @@ export function ConfidenceBadge({ band }: { band: string }) {
 
 export function Progress({
   value,
-  tone = "emerald",
+  tone = "purple",
   className = "",
 }: {
   value: number; // 0-100
-  tone?: "emerald" | "amber" | "rose" | "sky";
+  tone?: "purple" | "emerald" | "amber" | "rose" | "sky";
   className?: string;
 }) {
   const bar =
-    tone === "emerald"
-      ? "from-emerald-500 to-teal-400"
-      : tone === "amber"
-        ? "from-amber-500 to-orange-400"
-        : tone === "rose"
-          ? "from-rose-500 to-orange-400"
-          : "from-sky-500 to-cyan-400";
+    tone === "purple"
+      ? "from-violet-600 via-purple-500 to-indigo-500"
+      : tone === "emerald"
+        ? "from-emerald-500 to-teal-400"
+        : tone === "amber"
+          ? "from-amber-500 to-orange-400"
+          : tone === "rose"
+            ? "from-rose-500 to-orange-400"
+            : "from-sky-500 to-cyan-400";
   return (
-    <div className={`h-2 w-full overflow-hidden rounded-full bg-slate-100 ${className}`}>
+    <div className={`h-2.5 w-full overflow-hidden rounded-full bg-violet-100/60 ${className}`}>
       <div
         className={`h-full rounded-full bg-gradient-to-r transition-all duration-700 ${bar}`}
         style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
@@ -196,9 +199,9 @@ export function ScoreRing({
       <svg width={size} height={size} className="-rotate-90">
         <defs>
           <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#34d399" />
-            <stop offset="55%" stopColor="#10b981" />
-            <stop offset="100%" stopColor="#0d9488" />
+            <stop offset="0%" stopColor="#a855f7" />
+            <stop offset="50%" stopColor="#8b5cf6" />
+            <stop offset="100%" stopColor="#6366f1" />
           </linearGradient>
         </defs>
         <circle
@@ -206,7 +209,7 @@ export function ScoreRing({
           cy={size / 2}
           r={r}
           fill="none"
-          stroke={dark ? "rgba(255,255,255,0.08)" : "#e2e8f0"}
+          stroke={dark ? "rgba(255,255,255,0.12)" : "#ede9fe"}
           strokeWidth={stroke}
         />
         <circle
@@ -232,7 +235,7 @@ export function ScoreRing({
           {score}
         </span>
         <span
-          className={`text-xs font-medium ${dark ? "text-slate-400" : "text-slate-400"}`}
+          className={`text-xs font-bold ${dark ? "text-purple-300" : "text-violet-600"}`}
         >
           out of {max}
         </span>
@@ -246,15 +249,15 @@ export function ScoreRing({
 export function PrototypeNote({ compact = false }: { compact?: boolean }) {
   return (
     <div
-      className={`flex gap-2.5 rounded-xl border border-amber-200/70 bg-amber-50/80 ${
-        compact ? "p-3" : "p-4"
+      className={`flex gap-3 rounded-2xl border border-purple-200/80 bg-purple-50/80 ${
+        compact ? "p-3.5" : "p-4.5"
       }`}
     >
-      <ShieldAlert className="mt-0.5 size-4 shrink-0 text-amber-600" />
-      <p className="text-xs leading-relaxed text-amber-800">
-        <span className="font-semibold">Prototype indicator — not a credit score.</span>{" "}
+      <ShieldAlert className="mt-0.5 size-4.5 shrink-0 text-purple-600" />
+      <p className="text-xs leading-relaxed text-purple-900">
+        <span className="font-bold">Prototype indicator — not a credit score.</span>{" "}
         The Financial Resilience Score is a hackathon prototype. It is{" "}
-        <span className="font-semibold">not a CIBIL score</span> and not issued by any
+        <span className="font-bold">not a CIBIL score</span> and not issued by any
         credit bureau. It must never be treated as a guarantee of loan approval.
       </p>
     </div>
@@ -263,9 +266,9 @@ export function PrototypeNote({ compact = false }: { compact?: boolean }) {
 
 export function InfoNote({ children }: { children: ReactNode }) {
   return (
-    <div className="flex gap-2.5 rounded-xl border border-sky-200/70 bg-sky-50/80 p-4">
-      <Info className="mt-0.5 size-4 shrink-0 text-sky-600" />
-      <p className="text-xs leading-relaxed text-sky-900">{children}</p>
+    <div className="flex gap-3 rounded-2xl border border-violet-200/80 bg-violet-50/90 p-4.5">
+      <Info className="mt-0.5 size-4.5 shrink-0 text-violet-600" />
+      <p className="text-xs leading-relaxed text-violet-900 font-medium">{children}</p>
     </div>
   );
 }
@@ -287,15 +290,15 @@ export function EmptyState({
 }) {
   return (
     <div className="card flex flex-col items-center px-6 py-12 text-center">
-      <div className="flex size-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+      <div className="flex size-14 items-center justify-center rounded-2xl bg-violet-100 text-violet-600">
         {icon}
       </div>
-      <h3 className="mt-4 font-display text-base font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 max-w-sm text-sm leading-relaxed text-slate-500">{body}</p>
+      <h3 className="mt-4 font-display text-base font-bold text-slate-900">{title}</h3>
+      <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-slate-500 font-medium">{body}</p>
       {actionHref && actionLabel && (
         <Link
           href={actionHref}
-          className="mt-5 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+          className="mt-6 rounded-2xl bg-violet-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-violet-200 transition hover:bg-violet-700"
         >
           {actionLabel}
         </Link>
@@ -317,12 +320,12 @@ export function LinkButton({
 }) {
   const cls =
     variant === "primary"
-      ? "bg-emerald-600 text-white shadow-sm hover:bg-emerald-700"
-      : "bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50";
+      ? "bg-violet-600 text-white shadow-md shadow-violet-200 hover:bg-violet-700"
+      : "bg-white text-slate-700 border border-violet-100 hover:bg-violet-50";
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${cls}`}
+      className={`inline-flex items-center gap-2 rounded-2xl px-4.5 py-2.5 text-sm font-bold transition ${cls}`}
     >
       {children}
     </Link>
@@ -334,7 +337,7 @@ export function LinkButton({
 export function Th({ children, className = "" }: { children?: ReactNode; className?: string }) {
   return (
     <th
-      className={`px-4 py-2.5 text-left text-[11px] font-semibold tracking-[0.06em] whitespace-nowrap text-slate-400 uppercase ${className}`}
+      className={`px-4.5 py-3 text-left text-[11px] font-bold tracking-[0.08em] whitespace-nowrap text-slate-400 uppercase ${className}`}
     >
       {children}
     </th>
@@ -342,5 +345,6 @@ export function Th({ children, className = "" }: { children?: ReactNode; classNa
 }
 
 export function Td({ children, className = "" }: { children?: ReactNode; className?: string }) {
-  return <td className={`px-4 py-3 text-sm text-slate-700 ${className}`}>{children}</td>;
+  return <td className={`px-4.5 py-3.5 text-sm font-medium text-slate-700 ${className}`}>{children}</td>;
 }
+

@@ -15,10 +15,10 @@ export default function LoginPage() {
       {/* Brand panel */}
       <div className="hero-mesh relative hidden flex-col justify-between bg-ink-950 p-10 lg:flex">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-ink-950">
-            <Landmark className="size-4.5" />
+          <span className="flex size-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-violet-600 via-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20">
+            <Landmark className="size-5" />
           </span>
-          <span className="font-display text-[15px] font-bold tracking-tight text-white">
+          <span className="font-display text-[16px] font-bold tracking-tight text-white">
             Gig FinancialBridge
           </span>
         </Link>
@@ -27,20 +27,20 @@ export default function LoginPage() {
             Your income may be informal.{" "}
             <span className="text-gradient">Your financial identity shouldn&rsquo;t be invisible.</span>
           </h1>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-400">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-purple-200">
             Sign in to explore the worker, employer and partner-bank experiences with
             fully synthetic demo data.
           </p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-          <p className="text-[11px] font-bold tracking-[0.16em] text-slate-400 uppercase">
-            Demo accounts · password <span className="text-emerald-300">demo123</span>
+        <div className="rounded-3xl border border-white/15 bg-white/5 p-5 backdrop-blur-xl">
+          <p className="text-[11px] font-bold tracking-[0.16em] text-purple-200 uppercase">
+            Demo accounts · password <span className="text-purple-300">demo123</span>
           </p>
           <div className="mt-3 grid grid-cols-2 gap-2">
             {DEMO_ACCOUNTS.map((a) => (
-              <div key={a.email} className="rounded-xl bg-white/6 px-3 py-2.5">
-                <p className="text-[11px] font-semibold text-slate-300">{a.role}</p>
-                <p className="font-mono text-[11.5px] text-emerald-300">{a.email}</p>
+              <div key={a.email} className="rounded-2xl bg-white/10 px-3.5 py-2.5 backdrop-blur-md">
+                <p className="text-[11px] font-bold text-slate-200">{a.role}</p>
+                <p className="font-mono text-[11.5px] font-bold text-purple-300">{a.email}</p>
               </div>
             ))}
           </div>
@@ -51,28 +51,28 @@ export default function LoginPage() {
       <div className="flex items-center justify-center bg-slate-50 px-5 py-12">
         <div className="w-full max-w-md">
           <Link href="/" className="mb-8 flex items-center gap-2 lg:hidden">
-            <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
-              <Landmark className="size-4" />
+            <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 text-white">
+              <Landmark className="size-4.5" />
             </span>
             <span className="font-display text-sm font-bold text-slate-900">Gig FinancialBridge</span>
           </Link>
           <h2 className="font-display text-2xl font-bold tracking-tight text-slate-900">
             Welcome back
           </h2>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm font-medium text-slate-500">
             Sign in to your FinancialBridge account.
           </p>
-          <div className="card mt-6 p-6">
+          <div className="card mt-6 p-6.5 border-purple-100 shadow-xl shadow-purple-500/5">
             <LoginForm />
           </div>
-          <p className="mt-5 text-center text-sm text-slate-500">
+          <p className="mt-5 text-center text-sm text-slate-500 font-medium">
             New here?{" "}
-            <Link href="/register" className="font-semibold text-emerald-600 hover:text-emerald-700">
+            <Link href="/register" className="font-bold text-violet-600 hover:text-violet-700">
               Create an account
             </Link>
           </p>
-          <p className="mt-6 flex items-start justify-center gap-1.5 text-center text-[11.5px] leading-relaxed text-slate-400">
-            <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
+          <p className="mt-6 flex items-start justify-center gap-1.5 text-center text-[11.5px] leading-relaxed text-slate-400 font-medium">
+            <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-violet-500" />
             This prototype never asks for real banking passwords, PINs or OTPs.
           </p>
         </div>
@@ -80,3 +80,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
